@@ -1,5 +1,5 @@
 {
-    "name": "alfaproject/omnipay-skrill",
+    "name": "ptuchik/omnipay-skrill",
     "type": "library",
     "description": "Skrill driver for the Omnipay payment processing library",
     "keywords": [
