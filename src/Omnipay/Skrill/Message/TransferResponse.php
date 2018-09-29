@@ -1,13 +1,13 @@
 <?php
+
 namespace Omnipay\Skrill\Message;
 
 /**
  * Skrill Transfer Response
- *
- * @author Joao Dias <joao.dias@cherrygroup.com>
+ * @author    Joao Dias <joao.dias@cherrygroup.com>
  * @copyright 2013-2014 Cherry Ltd.
- * @license http://opensource.org/licenses/mit-license.php MIT
- * @version 2.16 Automated Payments Interface
+ * @license   http://opensource.org/licenses/mit-license.php MIT
+ * @version   2.16 Automated Payments Interface
  */
 class TransferResponse extends Response
 {
@@ -23,9 +23,7 @@ class TransferResponse extends Response
 
     /**
      * Get the amount paid in the currency of the merchant's account.
-     *
      * Example: 2.35
-     *
      * @return double amount
      */
     public function getAmount()
@@ -35,9 +33,7 @@ class TransferResponse extends Response
 
     /**
      * Get the currency of the merchant's account.
-     *
      * Example: EUR
-     *
      * @return string currency
      */
     public function getCurrency()
@@ -47,9 +43,7 @@ class TransferResponse extends Response
 
     /**
      * Get the transaction reference.
-     *
      * Example: 983115224
-     *
      * @return string transaction reference
      */
     public function getTransactionReference()
@@ -59,10 +53,8 @@ class TransferResponse extends Response
 
     /**
      * Get the numeric value of the transaction status.
-     *
      * * 1 - scheduled (if beneficiary is not yet registered at Skrill);
      * * 2 - processed (if beneficiary is registered);
-     *
      * @return int status code
      */
     public function getStatus()
@@ -72,9 +64,7 @@ class TransferResponse extends Response
 
     /**
      * Get the text value of the transaction status.
-     *
      * Example: processed
-     *
      * @return string status message
      */
     public function getStatusMessage()
@@ -84,25 +74,19 @@ class TransferResponse extends Response
 
     /**
      * Get a code describing the status of this response.
-     *
      * @return string|null code
      */
     public function getCode()
     {
-        return $this->isSuccessful()
-            ? $this->getStatus()
-            : parent::getCode();
+        return $this->isSuccessful() ? $this->getStatus() : parent::getCode();
     }
 
     /**
      * Get a message describing the status of this response.
-     *
      * @return string message
      */
     public function getMessage()
     {
-        return $this->isSuccessful()
-            ? $this->getStatusMessage()
-            : parent::getMessage();
+        return $this->isSuccessful() ? $this->getStatusMessage() : parent::getMessage();
     }
 }

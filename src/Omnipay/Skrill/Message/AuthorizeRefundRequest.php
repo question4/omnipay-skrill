@@ -1,15 +1,15 @@
 <?php
+
 namespace Omnipay\Skrill\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 
 /**
  * Skrill Authorize Refund Request
- *
- * @author Joao Dias <joao.dias@cherrygroup.com>
+ * @author    Joao Dias <joao.dias@cherrygroup.com>
  * @copyright 2013-2014 Cherry Ltd.
- * @license http://opensource.org/licenses/mit-license.php MIT
- * @version 2.16 Automated Payments Interface
+ * @license   http://opensource.org/licenses/mit-license.php MIT
+ * @version   2.16 Automated Payments Interface
  */
 class AuthorizeRefundRequest extends AuthRequest
 {
@@ -32,7 +32,6 @@ class AuthorizeRefundRequest extends AuthRequest
 
     /**
      * Get the description of the refund.
-     *
      * @return string description
      */
     public function getDescription()
@@ -44,6 +43,7 @@ class AuthorizeRefundRequest extends AuthRequest
      * Set the description of the refund.
      *
      * @param string $value description
+     *
      * @return self
      */
     public function setDescription($value)
@@ -53,7 +53,6 @@ class AuthorizeRefundRequest extends AuthRequest
 
     /**
      * Get the URL or email address to which status updates should be sent.
-     *
      * @return string url or email
      */
     public function getStatusUrl()
@@ -65,6 +64,7 @@ class AuthorizeRefundRequest extends AuthRequest
      * Get the URL or email address to which status updates should be sent.
      *
      * @param string $value url or email
+     *
      * @return self
      */
     public function setStatusUrl($value)
@@ -75,7 +75,6 @@ class AuthorizeRefundRequest extends AuthRequest
     /**
      * Get the list of fields that should be passed back to the merchant's server when
      * the refund payment is confirmed. (maximum 5 fields)
-     *
      * @return array merchant fields
      */
     public function getMerchantFields()
@@ -88,6 +87,7 @@ class AuthorizeRefundRequest extends AuthRequest
      * the refund payment is confirmed. (maximum 5 fields)
      *
      * @param array $value merchant fields
+     *
      * @return self
      */
     public function setMerchantFields($value)
@@ -127,7 +127,8 @@ class AuthorizeRefundRequest extends AuthRequest
     /**
      * Create the authorize response for this request.
      *
-     * @param  \SimpleXMLElement  $xml  raw response
+     * @param  \SimpleXMLElement $xml raw response
+     *
      * @return AuthorizeResponse        response object for this request
      */
     protected function createResponse($xml)

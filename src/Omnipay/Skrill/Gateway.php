@@ -1,11 +1,16 @@
 <?php
+
 namespace Omnipay\Skrill;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\Skrill\Message\AuthorizeRefundRequest;
+use Omnipay\Skrill\Message\AuthorizeTransferRequest;
+use Omnipay\Skrill\Message\CompletePurchaseRequest;
+use Omnipay\Skrill\Message\PaymentRequest;
+use Omnipay\Skrill\Message\TransferRequest;
 
 /**
  * Skrill Gateway
- *
  * @author    Joao Dias <joao.dias@cherrygroup.com>
  * @copyright 2013-2014 Cherry Ltd.
  * @license   http://opensource.org/licenses/mit-license.php MIT
@@ -27,15 +32,14 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return [
-            'email'      => '',
-            'notifyUrl'  => '',
-            'testMode'   => false,
+            'email'     => '',
+            'notifyUrl' => '',
+            'testMode'  => false,
         ];
     }
 
     /**
      * Get the merchant's email address.
-     *
      * @return string email
      */
     public function getEmail()
@@ -57,7 +61,6 @@ class Gateway extends AbstractGateway
 
     /**
      * Get the merchant's MD5 API/MQI password.
-     *
      * @return string password
      */
     public function getPassword()
@@ -80,7 +83,6 @@ class Gateway extends AbstractGateway
     /**
      * Get the URL to which the transaction details will be posted after the payment
      * process is complete.
-     *
      * @return string notify url
      */
     public function getNotifyUrl()
@@ -91,7 +93,6 @@ class Gateway extends AbstractGateway
     /**
      * Set the URL to which the transaction details will be posted after the payment
      * process is complete.
-     *
      * Alternatively you may specify an email address to which you would like to receive
      * the results. If the notify url is omitted, no transaction details will be sent to
      * the merchant.
@@ -107,7 +108,6 @@ class Gateway extends AbstractGateway
 
     /**
      * Get the secret word used for signatures.
-     *
      * @return string Secret word
      */
     public function getSecretWord()
@@ -136,7 +136,7 @@ class Gateway extends AbstractGateway
      */
     public function purchase(array $parameters = [])
     {
-        return $this->createRequest('Omnipay\Skrill\Message\PaymentRequest', $parameters);
+        return $this->createRequest(PaymentRequest::class, $parameters);
     }
 
     /**
@@ -148,7 +148,7 @@ class Gateway extends AbstractGateway
      */
     public function completePurchase(array $parameters = [])
     {
-        return $this->createRequest('Omnipay\Skrill\Message\CompletePurchaseRequest', $parameters);
+        return $this->createRequest(CompletePurchaseRequest::class, $parameters);
     }
 
     /**
@@ -160,7 +160,7 @@ class Gateway extends AbstractGateway
      */
     public function authorizeTransfer(array $parameters = [])
     {
-        return $this->createRequest('Omnipay\Skrill\Message\AuthorizeTransferRequest', $parameters);
+        return $this->createRequest(AuthorizeTransferRequest::class, $parameters);
     }
 
     /**
@@ -172,7 +172,7 @@ class Gateway extends AbstractGateway
      */
     public function transfer(array $parameters = [])
     {
-        return $this->createRequest('Omnipay\Skrill\Message\TransferRequest', $parameters);
+        return $this->createRequest(TransferRequest::class, $parameters);
     }
 
     /**
@@ -184,6 +184,6 @@ class Gateway extends AbstractGateway
      */
     public function authorizeRefund(array $parameters = [])
     {
-        return $this->createRequest('Omnipay\Skrill\Message\AuthorizeRefundRequest', $parameters);
+        return $this->createRequest(AuthorizeRefundRequest::class, $parameters);
     }
 }

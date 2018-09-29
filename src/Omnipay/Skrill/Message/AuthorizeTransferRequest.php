@@ -1,13 +1,13 @@
 <?php
+
 namespace Omnipay\Skrill\Message;
 
 /**
  * Skrill Authorize Transfer Request
- *
- * @author Joao Dias <joao.dias@cherrygroup.com>
+ * @author    Joao Dias <joao.dias@cherrygroup.com>
  * @copyright 2013-2014 Cherry Ltd.
- * @license http://opensource.org/licenses/mit-license.php MIT
- * @version 2.16 Automated Payments Interface
+ * @license   http://opensource.org/licenses/mit-license.php MIT
+ * @version   2.16 Automated Payments Interface
  */
 class AuthorizeTransferRequest extends AuthRequest
 {
@@ -29,7 +29,6 @@ class AuthorizeTransferRequest extends AuthRequest
 
     /**
      * Get the subject of the notification email.
-     *
      * @return string subject
      */
     public function getSubject()
@@ -39,10 +38,10 @@ class AuthorizeTransferRequest extends AuthRequest
 
     /**
      * Set the subject of the notification email.
-     *
      * Example: Your order is ready
      *
      * @param string $value subject
+     *
      * @return self
      */
     public function setSubject($value)
@@ -52,7 +51,6 @@ class AuthorizeTransferRequest extends AuthRequest
 
     /**
      * Get the comment to be included in the notification email.
-     *
      * @return string note
      */
     public function getNote()
@@ -62,10 +60,10 @@ class AuthorizeTransferRequest extends AuthRequest
 
     /**
      * Set the comment to be included in the notification email.
-     *
      * Example: Details are available at our site...
      *
      * @param string $value note
+     *
      * @return self
      */
     public function setNote($value)
@@ -75,7 +73,6 @@ class AuthorizeTransferRequest extends AuthRequest
 
     /**
      * Get the customer email address.
-     *
      * @return string customer email
      */
     public function getCustomerEmail()
@@ -87,6 +84,7 @@ class AuthorizeTransferRequest extends AuthRequest
      * Set the customer email address.
      *
      * @param string $value customer email
+     *
      * @return self
      */
     public function setCustomerEmail($value)
@@ -116,7 +114,8 @@ class AuthorizeTransferRequest extends AuthRequest
     /**
      * Create the authorize response for this request.
      *
-     * @param  \SimpleXMLElement  $xml  raw response
+     * @param  \SimpleXMLElement $xml raw response
+     *
      * @return AuthorizeResponse        response object for this request
      */
     protected function createResponse($xml)

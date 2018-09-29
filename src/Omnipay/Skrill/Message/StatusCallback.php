@@ -6,13 +6,11 @@ use Omnipay\Common\Message\AbstractResponse;
 
 /**
  * Skrill Status Callback
- *
  * When the payment process is complete Skrill's payment server will send the details of
  * the transaction to the status URL provided by the merchant. This is done with a
  * standard HTTP POST request. The Skrill server will continue to post the status reports
  * until a response of HTTP OK (200) is received from the merchant's server or the number
  * of posts exceeds 10.
- *
  * @author    Joao Dias <joao.dias@cherrygroup.com>
  * @copyright 2013-2014 Cherry Ltd.
  * @license   http://opensource.org/licenses/mit-license.php MIT
@@ -67,7 +65,6 @@ class StatusCallback extends AbstractResponse
 
     /**
      * Is the response successful?
-     *
      * @return boolean
      */
     public function isSuccessful()
@@ -81,7 +78,6 @@ class StatusCallback extends AbstractResponse
 
     /**
      * Was the payment cancelled?
-     *
      * @return bool
      */
     public function isCancelled()
@@ -95,7 +91,6 @@ class StatusCallback extends AbstractResponse
 
     /**
      * Validates the MD5 signature and, if enabled, the SHA2 signature.
-     *
      * @return bool
      */
     protected function validateSignatures()
@@ -113,7 +108,6 @@ class StatusCallback extends AbstractResponse
 
     /**
      * @see getStatus() for the possible status codes.
-     *
      * @return int status
      */
     public function getCode()
@@ -123,23 +117,20 @@ class StatusCallback extends AbstractResponse
 
     /**
      * Get the status of the transaction.
-     *
      * * -3 - Chargeback (see STATUS_CHARGEBACK)
      * * -2 - Failed (see STATUS_FAILED)
      * * -1 - Cancelled (see STATUS_CANCELLED)
      * * 0 - Pending (see STATUS_PENDING)
      * * 2 - Processed (see STATUS_PROCESSED)
-     *
      * @return int status
      */
     public function getStatus()
     {
-        return (int)$this->data['status'];
+        return (int) $this->data['status'];
     }
 
     /**
      * Get the merchant's email address.
-     *
      * @return string merchant's email
      */
     public function getMerchantEmail()
@@ -150,7 +141,6 @@ class StatusCallback extends AbstractResponse
     /**
      * Get the email address of the customer who is making the payment, i.e. sending the
      * money.
-     *
      * @return string customer's email
      */
     public function getCustomerEmail()
@@ -160,32 +150,27 @@ class StatusCallback extends AbstractResponse
 
     /**
      * Get the unique ID for the merchant's Skrill account.
-     *
      * ONLY needed for the calculation of the MD5 signature.
-     *
      * @return int merchant's id
      */
     public function getMerchantId()
     {
-        return (int)$this->data['merchant_id'];
+        return (int) $this->data['merchant_id'];
     }
 
     /**
      * Get the unique ID for the customer's Skrill account.
-     *
      * To receive the customer id value, please contact your account manager or
      * merchantservices@skrill.com
-     *
      * @return int customer's id
      */
     public function getCustomerId()
     {
-        return (int)$this->data['customer_id'] ?: null;
+        return (int) $this->data['customer_id'] ?: null;
     }
 
     /**
      * Get the unique reference or identification number provided by the merchant.
-     *
      * @return string transaction id
      */
     public function getTransactionId()
@@ -195,7 +180,6 @@ class StatusCallback extends AbstractResponse
 
     /**
      * Get Skrill's unique transaction reference for the transfer.
-     *
      * @return string transaction reference
      */
     public function getTransactionReference()
@@ -207,11 +191,12 @@ class StatusCallback extends AbstractResponse
      * Get the total amount of the payment in merchant's currency.
      *
      * @param $stringFormat
+     *
      * @return float|string amount
      */
     public function getSkrillAmount($stringFormat = false)
     {
-        $amount = (double)$this->data['mb_amount'];
+        $amount = (double) $this->data['mb_amount'];
 
         if ($stringFormat) {
             $amount = number_format($amount, 2, '.', '');
@@ -222,9 +207,7 @@ class StatusCallback extends AbstractResponse
 
     /**
      * Get the currency of skrill amount.
-     *
      * Will always be the same as the currency of the beneficiary's account at Skrill.
-     *
      * @return string currency
      */
     public function getSkrillCurrency()
@@ -235,20 +218,17 @@ class StatusCallback extends AbstractResponse
     /**
      * Get the code detailing the reason for the failure, if the transaction is with
      * status -2 (failed).
-     *
      * To receive the failed reason code value, please contact your account manager or
      * merchantservices@skrill.com.
-     *
      * @return int failed reason code
      */
     public function getFailedReasonCode()
     {
-        return (int)$this->data['failed_reason_code'] ?: null;
+        return (int) $this->data['failed_reason_code'] ?: null;
     }
 
     /**
      * Get the MD5 signature.
-     *
      * @return string md5 signature
      */
     public function getMd5Signature()
@@ -258,9 +238,7 @@ class StatusCallback extends AbstractResponse
 
     /**
      * Get the SHA2 signature.
-     *
      * To enable the sha2sig parameter, please contact merchantservices@skrill.com.
-     *
      * @return string sha2 signature
      */
     public function getSha2Signature()
@@ -270,17 +248,15 @@ class StatusCallback extends AbstractResponse
 
     /**
      * Get the amount of the payment as posted by the merchant on the entry form.
-     *
      * @return double amount
      */
     public function getAmount()
     {
-        return (double)$this->data['amount'];
+        return (double) $this->data['amount'];
     }
 
     /**
      * Get the currency of the payment as posted by the merchant on the entry form.
-     *
      * @return string currency
      */
     public function getCurrency()
@@ -290,17 +266,13 @@ class StatusCallback extends AbstractResponse
 
     /**
      * Get the payment instrument used by the customer on the gateway.
-     *
      * The merchant can choose to receive:
-     *
      * * consolidated values (only the type of the instrument, e.g. MBD - MB Direct,
      *   WLT - e-wallet or PBT - pending bank transfer)
      * * detailed values (the specific instrument used, e.g. VSA - Visa card,
      *   GIR - Giropay, etc.)
-     *
      * To receive the payment type value, please contact your account manager or
      * merchantservices@skrill.com.
-     *
      * @return string payment type
      */
     public function getPaymentType()
@@ -328,20 +300,18 @@ class StatusCallback extends AbstractResponse
     /**
      * Calculate the 128 bit message digest, expressed as a string of thirty-two
      * hexadecimal digits in UPPERCASE.
-     *
      * The md5sig is constructed by performing a MD5 calculation on a string built up by
      * concatenating the other fields returned to the status url.
-     *
      * @return string               md5 signature
      */
     public function calculateMd5Signature()
     {
         return strtoupper(md5(
-            $this->getMerchantId() .
-            $this->getTransactionReference() .
-            $this->getSecretWordForMd5Signature() .
-            $this->getSkrillAmount(true) .
-            $this->getSkrillCurrency() .
+            $this->getMerchantId().
+            $this->getTransactionReference().
+            $this->getSecretWordForMd5Signature().
+            $this->getSkrillAmount(true).
+            $this->getSkrillCurrency().
             $this->getStatus()
         ));
     }
@@ -349,27 +319,24 @@ class StatusCallback extends AbstractResponse
     /**
      * Calculate the 256 bit message digest, expressed as a string of sixty-four
      * hexadecimal digits in lowercase.
-     *
      * The sha2sig is constructed by performing a SHA256 calculation on a string built up
      * by concatenating the other fields returned to the status url.
-     *
      * @return string               sha2 signature
      */
     public function calculateSha2Signature()
     {
         return hash('sha256',
-            $this->getMerchantId() .
-            $this->getTransactionReference() .
-            $this->getSecretWordForMd5Signature() .
-            $this->getSkrillAmount() .
-            $this->getSkrillCurrency() .
+            $this->getMerchantId().
+            $this->getTransactionReference().
+            $this->getSecretWordForMd5Signature().
+            $this->getSkrillAmount().
+            $this->getSkrillCurrency().
             $this->getStatus()
         );
     }
 
     /**
      * Get the merchant's email address.
-     *
      * @return string
      */
     public function getEmail()
@@ -379,7 +346,6 @@ class StatusCallback extends AbstractResponse
 
     /**
      * Get the merchant's MD5 API/MQI password.
-     *
      * @return string password
      */
     public function getPassword()
@@ -390,7 +356,6 @@ class StatusCallback extends AbstractResponse
     /**
      * Get the URL to which the transaction details will be posted after the payment
      * process is complete.
-     *
      * @return string notify url
      */
     public function getNotifyUrl()
@@ -415,11 +380,12 @@ class StatusCallback extends AbstractResponse
      */
     public function testMdSignatures()
     {
-        return (! $this->getSecretWord()) || $this->getMd5Signature() == $this->calculateMd5Signature();
+        return (!$this->getSecretWord()) || $this->getMd5Signature() == $this->calculateMd5Signature();
     }
 
     /**
      * @param string $secretWord
+     *
      * @return $this
      */
     public function setSecretWord($secretWord)

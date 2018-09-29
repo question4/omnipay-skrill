@@ -1,4 +1,5 @@
 <?php
+
 namespace Omnipay\Skrill\Message;
 
 use Omnipay\Common\Exception\RuntimeException;
@@ -7,14 +8,12 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
  * Callback handler
- *
  * @package Omnipay\Skrill\Message
  */
 class CompletePurchaseRequest extends AbstractRequest
 {
     /**
      * Initialize the object with parameters.
-     *
      * If any unknown parameters passed, they will be ignored.
      *
      * @param array $parameters An associative array of parameters
@@ -35,7 +34,6 @@ class CompletePurchaseRequest extends AbstractRequest
 
     /**
      * Get the data for this request.
-     *
      * @return array request data
      */
     public function getData()
@@ -46,7 +44,7 @@ class CompletePurchaseRequest extends AbstractRequest
     /**
      * @param  array $data payment data to send
      *
-     * @return PaymentResponse         payment response
+     * @return \Omnipay\Skrill\Message\StatusCallback
      */
     public function sendData($data)
     {
