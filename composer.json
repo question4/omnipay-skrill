@@ -1,5 +1,5 @@
 {
-    "name": "ptuchik/omnipay-skrill",
+    "name": "question4/omnipay-skrill",
     "type": "library",
     "description": "Skrill driver for the Omnipay payment processing library",
     "keywords": [
@@ -10,7 +10,7 @@
         "pay",
         "payment"
     ],
-    "homepage": "https://github.com/alfaproject/omnipay-skrill",
+    "homepage": "https://github.com/question4/omnipay-skrill",
     "license": "MIT",
     "authors": [
         {
