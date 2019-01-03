@@ -34,7 +34,7 @@ class Gateway extends AbstractGateway
         return [
             'email'     => '',
             'notifyUrl' => '',
-            'testMode'  => false,
+            'testMode'  => true,
         ];
     }
 

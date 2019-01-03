@@ -70,7 +70,7 @@ class PaymentResponse extends AbstractResponse implements RedirectResponseInterf
      */
     public function getStatus()
     {
-        return (string) $this->data->getHeader('X-Skrill-Status');
+        return ; //(string) $this->data->getHeader('X-Skrill-Status');
     }
 
     /**
@@ -90,8 +90,8 @@ class PaymentResponse extends AbstractResponse implements RedirectResponseInterf
      */
     public function getMessage()
     {
-        $statusTokens = explode(':', $this->getStatus());
+        //$statusTokens = explode(':', $this->getStatus());
 
-        return array_pop($statusTokens) ?: null;
+        return; // array_pop($statusTokens) ?: null;
     }
 }
